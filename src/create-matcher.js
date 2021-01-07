@@ -36,12 +36,12 @@ export function createMatcher (
     currentRoute?: Route,
     redirectedFrom?: Location
   ): Route {
-    const location = normalizeLocation(raw, currentRoute, false, router)
+    const location = normalizeLocation(raw, currentRoute, false, router)  //返回一个对路由解析过的对象，其中query也做了解析
     const { name } = location
 
     if (name) {
       const record = nameMap[name]
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV !== 'production') {  //如果name没有对应的路由
         warn(record, `Route with name '${name}' does not exist`)
       }
       if (!record) return _createRoute(null, location)

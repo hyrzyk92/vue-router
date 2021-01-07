@@ -15,7 +15,7 @@ export function normalizeLocation (
 ): Location {
   let next: Location = typeof raw === 'string' ? { path: raw } : raw
   // named target
-  if (next._normalized) {
+  if (next._normalized) { // -----?????
     return next
   } else if (next.name) {
     next = extend({}, raw)
@@ -62,8 +62,8 @@ export function normalizeLocation (
 
   return {
     _normalized: true,
-    path,
-    query,
-    hash
+    path,  //  /a
+    query,  //  {id: 12}
+    hash   //  #sss
   }
 }

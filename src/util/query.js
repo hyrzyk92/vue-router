@@ -49,7 +49,7 @@ export function resolveQuery (
 
 const castQueryParamValue = value => (value == null || typeof value === 'object' ? value : String(value))
 
-function parseQuery (query: string): Dictionary<string> {
+function parseQuery (query: string): Dictionary<string> {  //将路由里的query解析成对象形式
   const res = {}
 
   query = query.trim().replace(/^(\?|#|&)/, '')

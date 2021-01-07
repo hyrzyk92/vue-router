@@ -16,26 +16,26 @@ export function createRouteMap (
   nameMap: Dictionary<RouteRecord>
 } {
   // the path list is used to control path matching priority
-  const pathList: Array<string> = oldPathList || []
+  const pathList: Array<string> = oldPathList || []    //元素是path的数组
   // $flow-disable-line
-  const pathMap: Dictionary<RouteRecord> = oldPathMap || Object.create(null)
+  const pathMap: Dictionary<RouteRecord> = oldPathMap || Object.create(null)  // key是path，value是对应record对象的对象
   // $flow-disable-line
-  const nameMap: Dictionary<RouteRecord> = oldNameMap || Object.create(null)
+  const nameMap: Dictionary<RouteRecord> = oldNameMap || Object.create(null)  // key是name，value是对应record对象的对象
 
-  routes.forEach(route => {
-    addRouteRecord(pathList, pathMap, nameMap, route, parentRoute)
+  routes.forEach(route => {//为pathList、pathMap、nameMap添加数据
+    addRouteRecord(pathList, pathMap, nameMap, route, parentRoute)   
   })
 
   // ensure wildcard routes are always at the end
-  for (let i = 0, l = pathList.length; i < l; i++) {
+  for (let i = 0, l = pathList.length; i < l; i++) {//把可以匹配任意路由的*放在最后
     if (pathList[i] === '*') {
-      pathList.push(pathList.splice(i, 1)[0])
+      pathList.push(pathList.splice(i, 1)[0])  
       l--
       i--
     }
   }
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development') {  //找出不是以*或者/开头的path，发出警告
     // warn if routes do not include leading slashes
     const found = pathList
     // check for missing leading slash
@@ -208,8 +208,8 @@ function normalizePath (
   parent?: RouteRecord,
   strict?: boolean
 ): string {
-  if (!strict) path = path.replace(/\/$/, '')
-  if (path[0] === '/') return path
+  if (!strict) path = path.replace(/\/$/, '')  //去掉最后的/
+  if (path[0] === '/') return path     //   以/开头的直接返回
   if (parent == null) return path
   return cleanPath(`${parent.path}/${path}`)
 }

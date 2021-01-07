@@ -42,7 +42,7 @@ export function resolvePath (
   return stack.join('/')
 }
 
-export function parsePath (path: string): {
+export function parsePath (path: string): {  //  解析字符串路由，分出path,  query,  hash
   path: string;
   query: string;
   hash: string;
@@ -63,9 +63,9 @@ export function parsePath (path: string): {
   }
 
   return {
-    path,
-    query,
-    hash
+    path,  //  /a
+    query,  // id=12 
+    hash   //  #sss
   }
 }
 

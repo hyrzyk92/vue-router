@@ -86,6 +86,18 @@ export class History {
     let route
     // catch redirect option https://github.com/vuejs/vue-router/issues/3201
     try {
+      /**这里的match方法会返回一个对象，大概是下边这样
+       * const route: Route = {
+          name: location.name || (record && record.name),
+          meta: (record && record.meta) || {},
+          path: location.path || '/',
+          hash: location.hash || '',
+          query,
+          params: location.params || {},
+          fullPath: getFullPath(location, stringifyQuery),
+          matched: record ? formatMatch(record) : []
+        }
+       */
       route = this.router.match(location, this.current)
     } catch (e) {
       this.errorCbs.forEach(cb => {

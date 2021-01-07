@@ -59,7 +59,7 @@ export default class VueRouter {
 
     switch (mode) {
       case 'history':
-        this.history = new HTML5History(this, options.base)
+        this.history = new HTML5History(this, options.base) //options.base路由前缀
         break
       case 'hash':
         this.history = new HashHistory(this, options.base, this.fallback)
@@ -94,7 +94,7 @@ export default class VueRouter {
 
     // set up app destroyed handler
     // https://github.com/vuejs/vue-router/issues/2639
-    app.$once('hook:destroyed', () => {
+    app.$once('hook:destroyed', () => {  //vue实例销毁的时候从路由实例里移除
       // clean out app from this.apps array once destroyed
       const index = this.apps.indexOf(app)
       if (index > -1) this.apps.splice(index, 1)
@@ -130,7 +130,7 @@ export default class VueRouter {
         handleInitialScroll(routeOrError)
       }
       history.transitionTo(
-        history.getCurrentLocation(),
+        history.getCurrentLocation(),  //获取路径（不带路由前缀）
         setupListeners,
         setupListeners
       )

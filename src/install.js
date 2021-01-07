@@ -35,7 +35,7 @@ export function install (Vue) {
     }
   })
 
-  Object.defineProperty(Vue.prototype, '$router', {
+  Object.defineProperty(Vue.prototype, '$router', {  
     get () { return this._routerRoot._router }
   })
 
